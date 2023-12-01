@@ -1,8 +1,8 @@
-import { Inter } from 'next/font/google'
+import { Jost } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 
-const inter = Inter({ subsets: ['latin'] })
+const jost = Jost({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'KyzAnimeList',
@@ -12,7 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${jost.className} bg-owned-dark-300 text-owned-light-500`}>
         <Navbar />
         {children}
       </body>
