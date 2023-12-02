@@ -19,13 +19,13 @@ const DetailAnimePage = async ({ params: { id } }) => {
               {animeDetail.data.title_english}
             </h3>
             <div className="flex gap-2 mt-2">
-              <span className="bg-owned-primary-500 text-xs px-2 rounded-sm">
+              <span className="bg-owned-primary-500 text-xs md:text-sm px-2 rounded-sm">
                 Ranked #{animeDetail.data.rank}
               </span>
-              <span className="bg-owned-accent-100 text-xs px-2 rounded-sm">
+              <span className="bg-owned-accent-100 text-xs md:text-sm px-2 rounded-sm">
                 Popularity #{animeDetail.data.popularity}
               </span>
-              <span className="bg-owned-secondary-100 text-xs px-2 rounded-sm">
+              <span className="bg-owned-secondary-100 text-xs md:text-sm px-2 rounded-sm">
                 Members #{animeDetail.data.members}
               </span>
             </div>

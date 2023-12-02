@@ -16,6 +16,10 @@ const VideoPlayer = ({ youtubeId }) => {
     height: "250",
   };
 
+  const onError = (error) => {
+    alert("Maaf terjadi kesalahan, silahkan coba lagi nanti.");
+  };
+
   const Player = () => {
     return (
       <div className="fixed bottom-4 right-4">
@@ -30,6 +34,7 @@ const VideoPlayer = ({ youtubeId }) => {
           videoId={youtubeId}
           onReady={(event) => event.target.pauseVideo()}
           opts={options}
+          onError={(error) => onError(error)}
         />
       </div>
     );
