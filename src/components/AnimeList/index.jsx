@@ -7,19 +7,20 @@ const AnimeList = ({ api }) => {
       {api.data?.map((anime, index) => {
         return (
           <Link
-            href={`/${anime.mal_id}`}
+            href={`/anime/${anime.mal_id}`}
             className="kyz-card bg-owned-dark-300 cursor-pointer hover:text-owned-primary-500 overflow-hidden"
             key={index}
           >
-            <div className="kyz-card__image relative overflow-hidden">
+            <div className="kyz-card__image relative rounded-md overflow-hidden">
               <Image
                 src={anime.images.webp.image_url}
                 alt="..."
                 width={350}
                 height={350}
+                className="rounded-md"
               />
             </div>
-            <div className="p-4">
+            <div className="py-3">
               <h3 className="font-bold text-white text-md xl:text-xl">
                 {anime.title}
               </h3>

@@ -1,9 +1,9 @@
 const Loading = () => {
-    return (
-        <div className="kyz-vertical__center">
-            <div className="kyz-loader"></div>
-        </div>
-    )
-}
+  return (
+    <div className="flex flex-col items-center justify-center max-w-xl mx-auto min-h-screen">
+      <div className="kyz-loader"></div>
+    </div>
+  );
+};
 
-export default Loading
+export default Loading;

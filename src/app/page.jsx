@@ -1,21 +1,24 @@
-import AnimeList from "@/components/AnimeList"
-import Header from "@/components/AnimeList/Header"
+import AnimeList from "@/components/AnimeList";
+import Header from "@/components/AnimeList/Header";
+import { getAnimeResponse } from "./libs/api-libs";
 
 const Home = async () => {
-
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime?limit=12`)
-  const topAnime = await response.json()
+  const topAnime = await getAnimeResponse("top/anime", "limit=12");
 
   return (
-      <>
-        <section>
-          <div className="container mx-auto px-4">
-            <Header title="Paling Populer" linkHref="/populer" linkTitle="Lihat Semua"  />
-            <AnimeList api={topAnime} />
-          </div>
-        </section>
-      </>
-  )
-}
+    <>
+      <section>
+        <div className="container mx-auto px-4 min-h-screen">
+          <Header
+            title="Paling Populer"
+            linkHref="/populer"
+            linkTitle="Lihat Semua"
+          />
+          <AnimeList api={topAnime} />
+        </div>
+      </section>
+    </>
+  );
+};
 
-export default Home
+export default Home;

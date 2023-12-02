@@ -30,13 +30,6 @@ h3 {
     overflow: hidden;
 }
 
-.kyz-vertical__center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 70vh;
-}
-
 .kyz-loader {
     width: 50px;
     height: 50px;
