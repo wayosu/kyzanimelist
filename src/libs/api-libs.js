@@ -6,6 +6,12 @@ export const getAnimeResponse = async (resource, query) => {
 
 export const getNestedAnimeResponse = async (resource, objectProperty) => {
     const response = await getAnimeResponse(resource)
-    const data = response.data.flatMap(item => item.entry)
+    const data = response.data.flatMap(item => item[objectProperty])
     return data
+}
+
+export const getRandomAnimeResponse = (data, limit) => {
+    let recomendedAnime = data.sort(() => Math.random() - 0.5);
+    recomendedAnime = { data: data.slice(0, limit) };
+    return recomendedAnime
 }
