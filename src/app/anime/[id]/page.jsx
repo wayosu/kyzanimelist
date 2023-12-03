@@ -1,11 +1,9 @@
-import { getAnimeResponse } from "@/app/libs/api-libs";
-import Header from "@/components/AnimeList/Header";
+import { getAnimeResponse } from "@/libs/api-libs";
 import VideoPlayer from "@/components/Utilities/VideoPlayer";
 import Image from "next/image";
 
 const DetailAnimePage = async ({ params: { id } }) => {
   const animeDetail = await getAnimeResponse(`anime/${id}`);
-  console.log(animeDetail);
 
   return (
     <>
