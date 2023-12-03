@@ -22,6 +22,7 @@ h3 {
 /* Custom CSS */
 .kyz-card:hover img {
     scale: 105%;
+    
 }
 
 .kyz-card__image {
@@ -43,4 +44,8 @@ h3 {
   
 @keyframes s3{ 
     100%{transform: rotate(1turn)}
+}
+
+.kyz-dropdown:hover .kyz-dropdown__menu{
+    display: block;
 }
