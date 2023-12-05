@@ -1,7 +1,6 @@
 import { Jost } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const jost = Jost({ subsets: ["latin"] });
 
@@ -15,10 +14,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         className={`${jost.className} bg-owned-dark-300 text-owned-light-500`}
+        suppressHydrationWarning={true}
       >
         <Navbar />
         {children}
-        <Footer />
       </body>
     </html>
   );

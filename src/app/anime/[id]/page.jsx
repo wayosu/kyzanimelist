@@ -2,7 +2,7 @@ import { getAnimeResponse } from "@/libs/api-libs";
 import VideoPlayer from "@/components/Utilities/VideoPlayer";
 import Image from "next/image";
 
-const DetailAnimePage = async ({ params: { id } }) => {
+const Page = async ({ params: { id } }) => {
   const animeDetail = await getAnimeResponse(`anime/${id}`);
 
   return (
@@ -117,4 +117,4 @@ const DetailAnimePage = async ({ params: { id } }) => {
   );
 };
 
-export default DetailAnimePage;
+export default Page;

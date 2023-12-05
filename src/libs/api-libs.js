@@ -10,8 +10,13 @@ export const getNestedAnimeResponse = async (resource, objectProperty) => {
     return data
 }
 
-export const getRandomAnimeResponse = (data, limit) => {
-    let recomendedAnime = data.sort(() => Math.random() - 0.5);
-    recomendedAnime = { data: data.slice(0, limit) };
-    return recomendedAnime
+export const reproduce = (data, limit) => {
+    const first = ~~(Math.random() * (data.length - limit) + 1)
+    const last = first + limit
+
+    const response = {
+        data: data.slice(first, last)
+    }
+
+    return response
 }

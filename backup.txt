@@ -1,4 +1,7 @@
-import { authUserSession } from "@/libs/auth-libs";
+"use client";
+
+import { authUserSession } from "../../../libs/auth-libs";
+import { Bookmarks, ChatText } from "@phosphor-icons/react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -31,6 +34,7 @@ const Page = async () => {
             className="block w-full bg-owned-primary-500 rounded-md p-2 text-center text-sm md:text-base hover:bg-owned-primary-400 transition-all"
           >
             <span className="flex items-center justify-center gap-1">
+              <Bookmarks size={25} />
               <span>My Collection</span>
             </span>
           </Link>
@@ -39,6 +43,7 @@ const Page = async () => {
             className="block w-full bg-owned-secondary-100 rounded-md p-2 text-center text-sm md:text-base hover:bg-owned-secondary-200 transition-all"
           >
             <span className="flex items-center justify-center gap-1">
+              <ChatText size={25} />
               <span>My Comment</span>
             </span>
           </Link>
@@ -49,3 +54,21 @@ const Page = async () => {
 };
 
 export default Page;
+
+
+
+
+
+
+
+
+
+
+
+<div className="mb-4">
+  <Pagination
+    page={page}
+    lastPage={topAnime.pagination?.last_visible_page}
+    setPage={setPage}
+  />
+</div>

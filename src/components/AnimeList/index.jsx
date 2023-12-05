@@ -18,6 +18,7 @@ const AnimeList = ({ api }) => {
                 width={350}
                 height={350}
                 className="rounded-md"
+                priority={false}
               />
             </div>
             <div className="py-3">

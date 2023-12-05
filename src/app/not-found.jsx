@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const notFoundPage = () => {
+const Page = () => {
   return (
     <div className="flex flex-col items-center mt-40 md:mt-80 max-w-xl mx-auto min-h-screen">
       <div className="text-center px-4">
@@ -20,4 +20,4 @@ const notFoundPage = () => {
   );
 };
 
-export default notFoundPage;
+export default Page;

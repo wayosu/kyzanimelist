@@ -2,7 +2,7 @@ import { getAnimeResponse } from "@/libs/api-libs";
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/AnimeList/Header";
 
-const SearchPage = async ({ params }) => {
+const Page = async ({ params }) => {
   const { keyword } = params;
   const decodeKeyword = decodeURI(keyword);
   const searchAnime = await getAnimeResponse("anime", `q=${keyword}`);
@@ -19,4 +19,4 @@ const SearchPage = async ({ params }) => {
   );
 };
 
-export default SearchPage;
+export default Page;
