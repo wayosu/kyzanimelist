@@ -22,9 +22,7 @@ const AnimeList = ({ api }) => {
               />
             </div>
             <div className="py-3">
-              <h3 className="font-bold text-white text-md xl:text-xl">
-                {anime.title}
-              </h3>
+              <h3 className="font-bold text-white xl:text-xl">{anime.title}</h3>
             </div>
           </Link>
         );
