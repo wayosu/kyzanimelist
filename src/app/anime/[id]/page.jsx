@@ -4,12 +4,20 @@ import Image from "next/image";
 import CollectionButton from "@/components/AnimeList/CollectionButton";
 import { authUserSession } from "@/libs/auth-libs";
 import prisma from "@/libs/prisma";
+import CommentInput from "@/components/AnimeList/CommentInput";
+import CommentList from "@/components/AnimeList/CommentList";
 
 const Page = async ({ params: { id } }) => {
   const animeDetail = await getAnimeResponse(`anime/${id}`);
   const user = await authUserSession();
   const collection = await prisma.collection.findFirst({
     where: { user_email: user?.email, anime_mal_id: id },
+  });
+  const comments = await prisma.comment.findMany({
+    where: { anime_mal_id: id },
+  });
+  const totalComments = await prisma.comment.count({
+    where: { anime_mal_id: id },
   });
 
   return (
@@ -24,19 +32,26 @@ const Page = async ({ params: { id } }) => {
               {animeDetail.data.title_english}
             </h3>
             <div className="flex gap-2 my-2">
-              <span className="bg-owned-primary-500 text-xs md:text-sm px-2 rounded-sm">
+              <span className="border border-owned-primary-500 text-xs md:text-sm px-2 rounded-md">
                 Ranked #{animeDetail.data.rank}
               </span>
-              <span className="bg-owned-accent-100 text-xs md:text-sm px-2 rounded-sm">
+              <span className="border border-owned-accent-100 text-xs md:text-sm px-2 rounded-md">
                 Popularity #{animeDetail.data.popularity}
               </span>
-              <span className="bg-owned-secondary-100 text-xs md:text-sm px-2 rounded-sm">
+              <span className="border border-owned-secondary-100 text-xs md:text-sm px-2 rounded-md">
                 Members #{animeDetail.data.members}
               </span>
             </div>
-            {!collection && user && (
-              <CollectionButton anime_mal_id={id} user_email={user.email} />
-            )}
+            <div className="mt-3">
+              {!collection && user && (
+                <CollectionButton
+                  anime_mal_id={id}
+                  user_email={user.email}
+                  anime_title={animeDetail.data.title}
+                  anime_image={animeDetail.data.images.webp.image_url}
+                />
+              )}
+            </div>
           </div>
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex flex-col gap-4">
@@ -103,7 +118,7 @@ const Page = async ({ params: { id } }) => {
                 <h3 className="text-lg lg:text-xl font-semibold mb-1">
                   Synopsis
                 </h3>
-                <p className="text-sm lg:text-base font-light text-justify">
+                <p className="text-sm md:text-base font-light text-justify">
                   {animeDetail.data.synopsis}
                 </p>
               </div>
@@ -111,11 +126,31 @@ const Page = async ({ params: { id } }) => {
                 <h3 className="text-lg lg:text-xl font-semibold mb-1">
                   Background
                 </h3>
-                <p className="text-sm lg:text-base font-light text-justify">
+                <p className="text-sm md:text-base font-light text-justify">
                   {animeDetail.data.background}
                 </p>
               </div>
             </div>
+          </div>
+          <div className="py-4 mt-1">
+            <h3 className="text-lg lg:text-xl font-semibold mb-1">
+              {totalComments} Comments
+            </h3>
+            {comments.length === 0 ? (
+              <p className="text-sm md:text-base font-light text-justify">
+                No comments yet. Be the first one to comment!
+              </p>
+            ) : (
+              <CommentList comments={comments} />
+            )}
+            {user && (
+              <CommentInput
+                anime_mal_id={id}
+                user_email={user?.email}
+                username={user?.name}
+                anime_title={animeDetail.data.title}
+              />
+            )}
           </div>
         </div>
       </section>

@@ -1,5 +1,4 @@
 import Header from "@/components/Dashboard/Header";
-import { getAnimeResponse } from "@/libs/api-libs";
 import { authUserSession } from "@/libs/auth-libs";
 import prisma from "@/libs/prisma";
 import Image from "next/image";
@@ -16,27 +15,23 @@ const Page = async () => {
       <div className="container mx-auto px-4 min-h-screen">
         <Header title={"My Collection"} />
         <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6">
-          {collection.map(async (item, index) => {
-            const animeDetail = await getAnimeResponse(
-              `anime/${item.anime_mal_id}`
-            );
-
+          {collection.map((item, index) => {
             return (
               <Link
                 key={index}
                 href={`/anime/${item.anime_mal_id}`}
-                className="relative"
+                className="relative rounded-md overflow-hidden"
               >
                 <Image
-                  src={animeDetail.data.images.webp.image_url}
-                  alt=""
+                  src={item.anime_image}
+                  alt={item.anime_image}
                   width={350}
                   height={350}
                   className="w-full"
                 />
                 <div className="absolute flex items-center justify-center bottom-0 w-full bg-owned-dark-500 bg-opacity-50 h-16 p-3">
                   <h3 className="font-bold text-white xl:text-xl">
-                    {animeDetail.data.title}
+                    {item.anime_title}
                   </h3>
                 </div>
               </Link>

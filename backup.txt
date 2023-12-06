@@ -1,74 +1,26 @@
-"use client";
-
-import { authUserSession } from "../../../libs/auth-libs";
-import { Bookmarks, ChatText } from "@phosphor-icons/react";
-import Image from "next/image";
-import Link from "next/link";
-
-const Page = async () => {
-  const user = await authUserSession();
+{collection.map(async (item, index) => {
+  const animeDetail = await getAnimeResponse(
+    `anime/${item.anime_mal_id}`
+  );
 
   return (
-    <>
-      <div className="container mx-auto px-4 min-h-screen">
-        <div className="py-4">
-          <h1 className="text-2xl">Dashboard</h1>
-          <div className="flex items-center gap-3 mt-3 w-full border rounded-md p-3">
-            <Image
-              src={user.image}
-              alt="image-user"
-              width={250}
-              height={250}
-              className="w-12 h-12 rounded-full"
-            />
-            <div>
-              <h2 className="text-base md:text-lg">Welcome, {user.name}</h2>
-              <h3 className="text-sm text-owned-grey-500">{user.email}</h3>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex gap-3">
-          <Link
-            href="/users/dashboard/collection"
-            className="block w-full bg-owned-primary-500 rounded-md p-2 text-center text-sm md:text-base hover:bg-owned-primary-400 transition-all"
-          >
-            <span className="flex items-center justify-center gap-1">
-              <Bookmarks size={25} />
-              <span>My Collection</span>
-            </span>
-          </Link>
-          <Link
-            href="/users/dashboard/comment"
-            className="block w-full bg-owned-secondary-100 rounded-md p-2 text-center text-sm md:text-base hover:bg-owned-secondary-200 transition-all"
-          >
-            <span className="flex items-center justify-center gap-1">
-              <ChatText size={25} />
-              <span>My Comment</span>
-            </span>
-          </Link>
-        </div>
+    <Link
+      key={index}
+      href={`/anime/${item.anime_mal_id}`}
+      className="relative"
+    >
+      <Image
+        src={animeDetail.data.images.webp.image_url}
+        alt=""
+        width={350}
+        height={350}
+        className="w-full"
+      />
+      <div className="absolute flex items-center justify-center bottom-0 w-full bg-owned-dark-500 bg-opacity-50 h-16 p-3">
+        <h3 className="font-bold text-white xl:text-xl">
+          {animeDetail.data.title}
+        </h3>
       </div>
-    </>
+    </Link>
   );
-};
-
-export default Page;
-
-
-
-
-
-
-
-
-
-
-
-<div className="mb-4">
-  <Pagination
-    page={page}
-    lastPage={topAnime.pagination?.last_visible_page}
-    setPage={setPage}
-  />
-</div>
+})}
